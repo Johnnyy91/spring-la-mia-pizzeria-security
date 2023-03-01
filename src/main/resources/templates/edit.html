@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+<title>Modifica PIZZA</title>
+</head>
+<body style="background-image: url('https://img.freepik.com/premium-photo/tasty-pepperoni-pizza-black-concrete-background_79782-103.jpg'); 
+             background-repeat:no-repeat;
+             background-size: cover;">
+	
+<div class="container">
+	<h1 class="text-light">Modifica pizza</h1>
+	<hr/>
+	<form id="formPizza" th:object="${pizza}"
+	  th:action="@{/edit/{id}(id=${pizza.id})}"  method="post">
+	  	<ul>
+	      <li 
+	         th:each="err : ${#fields.allErrors()}" 
+	         th:text="${err}" class="text-danger">
+	      </li>
+  		</ul>
+	  	<div class="row">
+	  	<div class="col-8">
+	  	<label for="name" class="form-label text-light">Nome</label>
+  		<input type="text" class="form-control" id="name" th:field="*{name}" th:errorClass="is-invalid">  			
+		<div th:if="${#fields.hasErrors('name')}" class="invalid-feedback">
+			<ul>
+			   <li th:each="err : ${#fields.errors('name')}" th:text="${err}"></li>
+			</ul>
+  		</div>
+  		
+  		<label for="description" class="form-label text-light">Descrizione</label>
+  		<input type="text" class="form-control" id="description" th:field="*{description}" th:errorClass="is-invalid">
+  		<div th:if="${#fields.hasErrors('description')}" class="invalid-feedback">
+			<ul>
+			   <li th:each="err : ${#fields.errors('description')}" th:text="${err}"></li>
+			</ul>
+  		</div>
+  		
+  		<label for="imgPath" class="form-label text-light">Immagine</label>
+  		<input type="text" class="form-control" id="imgPath" th:field="*{imgPath}" th:errorClass="is-invalid">
+  		<div th:if="${#fields.hasErrors('imgPath')}" class="invalid-feedback">
+			<ul>
+			   <li th:each="err : ${#fields.errors('imgPath')}" th:text="${err}"></li>
+			</ul>
+  		</div>
+  		
+	  	<label for="price" class="form-label text-light">Prezzo</label>
+  		<input type="text" class="form-control" id="price" th:field="*{price}" th:errorClass="is-invalid">
+  		<div th:if="${#fields.hasErrors('price')}" class="invalid-feedback">
+			<ul>
+			   <li th:each="err : ${#fields.errors('price')}" th:text="${err}"></li>
+			</ul>
+  		</div>
+  		
+  		<button type="submit" class="btn btn-success my-2">Salva</button>
+  		<a class="btn btn-danger" th:href="@{/}">Annulla</a>
+  		
+  		
+  		</div>
+  		</div>
+	</form>
+	</div>
+	
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Crea Offerta</title>
+</head>
+<body>
+	<div class="container">
+		<h1>Nuova Offerta: <span th:text="${offerta.pizza.name}"></span></h1>
+		<hr/>
+		
+		<div class="row">
+	  	<div class="col-8">
+		<form id="pizza-form" 
+			th:action="@{/offerta/edit}" 
+			method="post"
+			th:object="${offerta}">
+			
+			
+			<label class="form-label" for="Titolo">Titolo Offerta</label>
+			<input class="form-control" id="Titolo" th:field="*{Titolo}" type="text" th:errorClass="is-invalid">
+			
+			<input type="hidden" th:field="${offerta.pizza}">
+			<label class="form-label" for="DateStart">Inizio Data Sconto</label>
+			<input class="form-control" id="DateStart" th:field="*{DateStart}" type="date" th:errorClass="is-invalid">
+			
+			<input type="hidden" th:field="${offerta.pizza}">
+			<label class="form-label" for="DateEnd">Fine Data Sconto</label>
+			<input class="form-control" id="DateEnd" th:field="*{DateEnd}" type="date" th:errorClass="is-invalid">
+		
+			
+			<button type="submit" class="btn btn-primary">Salva</button>
+		  	<a class="btn btn-primary" th:href="@{/pizza}">Annulla</a>
+		
+		
+		</form>
+		
+	  	
+</body>
+</html>

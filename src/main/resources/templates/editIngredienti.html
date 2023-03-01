@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Crea ingredienti</title>
+</head>
+<body>
+	<div class="container">
+		<h1>Nuovo ingrediente: <span th:text="${ingredienti.pizza.name}"></span></h1>
+		<hr/>
+		
+		<div class="row">
+	  	<div class="col-8">
+		<form id="pizza-form" 
+			th:action="@{/ingredienti/editIngredienti}" 
+			method="post"
+			th:object="${ingredienti}">
+			
+			
+			<label class="form-label" for="name">Nome Ingrediene</label>
+			<input class="form-control" id="name" th:field="*{name}" type="text" th:errorClass="is-invalid">
+			
+			<input type="hidden" th:field="${ingredienti.pizza}">
+			<label class="form-label" for="price">Prezzo</label>
+			<input class="form-control" id="price" th:field="*{price}" type="date" th:errorClass="is-invalid">
+			
+			<input type="hidden" th:field="${ingredienti.pizza}">
+			<label class="form-label" for="quantity">Quantità</label>
+			<input class="form-control" id="quantity" th:field="*{quantity}" type="date" th:errorClass="is-invalid">
+		
+			
+			<button type="submit" class="btn btn-primary">Salva</button>
+		  	<a class="btn btn-primary" th:href="@{/pizza}">Annulla</a>
+		
+		
+		</form>
+		
+	  	
+</body>
+</html>
